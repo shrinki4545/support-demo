@@ -1,8 +1,0 @@
-GI Bronch – No Sound in Simulation
-Access Level: 2
-Date: 2025-10-12
-The simulation runs normally, but there is no sound during operation.
-Troubleshooting Steps:
-- Check volume in simulation screen – locate the volume control icon and ensure sound is not muted.
-- If still no sound, exit to Windows.
-- In Windows, verify the speaker icon is not muted, volume slider is up, and correct playback device is selected.
