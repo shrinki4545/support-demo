@@ -1,0 +1,74 @@
+GI Bronch – Scope not advancing (master triage + resolutions)
+
+Access Level: 1
+Date: 2025-10-26
+Keywords: scope not advancing, not reaching, stuck, jammed, GI scope, colonoscope, duodenoscope, Bronch scope, bronchoscope, entrance, mark, 0–12, 2, 3, 4, 6, 8, extender, cushion, obstruction, extension limiter
+
+LLM operator block (follow exactly):
+
+Goal
+- Handle “scope not advancing / not reaching / stuck” for the GI-Bronch simulator in one conversation.
+- Ask at most the necessary questions. If the user already provided the information, skip the question and route directly.
+- After choosing a section, OUTPUT ONLY that section’s **Resolution** steps (and any brief Recognition line), not the whole document.
+
+Stage 1 — Determine scope type
+- If the message does not specify the scope type, ask ONCE:
+  “Which scope are you using — a GI scope (colonoscope/duodenoscope) or a Bronch scope?”
+- If “GI/colonoscope/duodenoscope” ? proceed to Stage 2 (mark triage).
+- If “Bronch/bronchoscope” ? go to section [S-BRONCH] and use its Resolution.
+
+Stage 2 — GI mark triage (only for GI scopes)
+- If the message does not include a mark number, ask ONCE:
+  “At what mark number on the scope does it stop (0–12)? If it’s a range, reply like ‘2–3’ or ‘6–8’.”
+- Routing after the answer:
+  * If ANY reported mark ? 3 (including ranges like 3–4) ? choose section [S-GI-ENTRANCE].
+  * If ANY reported mark is 4–12 ? choose section [S-GI-EXTENDER].
+- If the user already provided both scope type and mark, do NOT ask; route immediately.
+
+Ambiguity handling
+- If still ambiguous after the single follow-up, briefly show BOTH GI resolutions (one-paragraph summaries) and ask which matches best.
+- Keep replies concise, procedural, and ordered. Never mix steps from different sections.
+
+Examples (for the LLM)
+- “scope not advancing” ? Ask scope type.
+- “gi scope not advancing” ? Ask mark.
+- “colonoscope stops at 2–3” ? Use [S-GI-ENTRANCE].
+- “not advancing past 5” ? Use [S-GI-EXTENDER].
+- “bronch scope not advancing” ? Use [S-BRONCH].
+
+Routing cheat-sheet
+1) GI scope ? mark triage ? (?3 ? [S-GI-ENTRANCE]) (4–12 ? [S-GI-EXTENDER])
+2) Bronch scope ? [S-BRONCH]
+
+------------------------------------------------------------
+[S-GI-EXTENDER]  GI scope not reaching / not advancing all the way in (Extender engaged)
+Triage marks: 4–12 (middle)
+Recognition:
+- Scope advances to mid-range (e.g., marks 6–8) then meets a firm stop or cannot pass a consistent depth.
+
+Resolution:
+1) Verify the extender / extension limiter on the left side is fully retracted.
+2) If still blocked: open a service ticket and include serial number, scope model, and the exact mark where it stops.
+
+
+------------------------------------------------------------
+[S-GI-ENTRANCE]  GI scope stuck at entrance (marks 2–3) — Cushion / obstruction
+Triage marks: ?3 (entrance)
+Recognition:
+- Scope stops near the entrance (marks ~2–3) with higher-than-normal resistance.
+
+Resolution:
+1) Inspect the entrance cushion/seal for damage or folding; reseat or replace if needed.
+2) Verify insertion path alignment; center the angulation wheels before insertion so the tip is straight.
+3) Remove any debris at the insertion sleeve/port; apply a small amount of baby powder.
+5) If resistance persists, stop and open a service ticket with serial number, scope model, and the exact mark where it stops.
+
+
+------------------------------------------------------------
+[S-BRONCH]  Bronch scope not advancing — placeholder
+Scope type: Bronch scope (bronchoscope); uses a separate airway entrance.
+
+Resolution (current status):
+1) Inserting Bronch scope, by design, required some maneuver and some force.
+2) Use baby powder to make insertion easier.
+4) If the scope still will not advance, contact Technical Support.
